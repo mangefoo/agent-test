@@ -1,23 +1,27 @@
 def fibonacci(n):
     """
-    Calculate the nth fibonacci number using iterative approach.
+    Generate fibonacci sequence up to the nth number.
+    Returns a list containing the fibonacci sequence.
     
     Args:
-        n (int): Position in fibonacci sequence (0-indexed)
+        n (int): The position up to which to generate fibonacci numbers
         
     Returns:
-        int: The nth fibonacci number
+        list: List of fibonacci numbers up to position n
     """
-    if n < 0:
-        raise ValueError("Fibonacci sequence is not defined for negative numbers")
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [1]
+    elif n == 2:
+        return [1, 1]
     
-    # Use iterative approach for better performance
-    a, b = 0, 1
-    for _ in range(2, n + 1):
-        a, b = b, a + b
+    # Initialize the sequence with first two fibonacci numbers
+    fib_sequence = [1, 1]
     
-    return b
+    # Generate remaining fibonacci numbers
+    for i in range(2, n):
+        next_fib = fib_sequence[i-1] + fib_sequence[i-2]
+        fib_sequence.append(next_fib)
+    
+    return fib_sequence
